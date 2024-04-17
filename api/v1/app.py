@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" API Version 1
+"""
 from api.v1.views import app_views
 from flask_cors import CORS
 from flask import Flask, jsonify
