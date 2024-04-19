@@ -9,7 +9,7 @@ from models import storage
 from models.user import User
 
 
-@app_views.route("/placess/<place_id>/reviews", methods=['GET'])
+@app_views.route("/places/<place_id>/reviews", methods=['GET'])
 def all_reviews(place_id):
     """Returns a list of all reviews of a place
     """
@@ -72,6 +72,7 @@ def create_review(place_id):
             break
     if not found_user:
         abort(404)
+    data["place_id"] = place_id
     new_review = Review(**data)
     new_review.save()
     return jsonify(new_review.to_dict()), 201

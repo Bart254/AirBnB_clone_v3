@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Creates a new state view
+""" Creates a city view
 """
 from api.v1.views import app_views
 from flask import jsonify, abort, request
@@ -64,6 +64,7 @@ def create_city(state_id):
         abort(400, description="Not a JSON")
     if 'name' not in data:
         abort(400, description="Missing name")
+    data["state_id"] = state_id
     new_city = City(**data)
     new_city.save()
     return jsonify(new_city.to_dict()), 201
